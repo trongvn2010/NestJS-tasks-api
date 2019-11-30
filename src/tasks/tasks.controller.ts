@@ -3,6 +3,7 @@ import { TasksService } from './tasks.service';
 import { Task, TaskStatus } from './task.model';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
+import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 
 // nest g controller tasks --no-spec
 @Controller('tasks')
@@ -38,7 +39,10 @@ export class TasksController {
     }
 
     @Patch('/:id/status')
-    updateTaskStatus(@Param('id') id: string, @Body('status') taskStatus: TaskStatus): Task {
+    updateTaskStatus(
+        @Param('id') id: string, 
+        @Body('status', TaskStatusValidationPipe) taskStatus: TaskStatus
+    ): Task {
         console.log(taskStatus);
         return this.tasksService.updateTaskStatus(id, taskStatus);
     }
