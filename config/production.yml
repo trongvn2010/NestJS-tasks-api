@@ -1,2 +1,4 @@
+server:
+  origin: http://nodavi.com
 db:
   synchronize: false
