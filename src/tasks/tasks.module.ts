@@ -3,11 +3,13 @@ import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TaskRepository } from './task.repository';
+import { AuthModule } from 'src/auth/auth.module';
 
 // nest g module tasks --no-spec
 @Module({
   imports: [
     TypeOrmModule.forFeature([TaskRepository]),
+    AuthModule
   ],
   controllers: [TasksController],
   providers: [TasksService],
